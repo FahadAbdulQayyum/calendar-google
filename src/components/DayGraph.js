@@ -45,40 +45,53 @@ const DayGraph = () => {
 
     const Page = {
         title: "Articles",
-        weeks: new Array(7).fill(weeks),
+        weeks: new Array(8).fill(weeks),
         times: new Array(24).fill(times),
-        // weeks: weeks,
-        // times: times,
         posts: new Array(24).fill(post),
         totalPosts: 50
     }
+
+    const clickPosition = (i, weekInd) => {
+        console.log('pressed', i, weekInd)
+    }
+
     const { posts, weeks: week, times: time } = Page
     return (
-        <div className='overflow'>
-            <div className='flex flex-row fixed'>
+        <div className='overflow-auto'>
+            <div className='flex flex-row fixed bg-white'>
                 {week.map((v, i) => {
                     return (
                         <table>
-                            <tr className='border'>
-                            {/* <tr> */}
-                                <td className='p-5 text-center w-[200px]'>{v[i]}</td>
+                            <tr>
+                                {/* <tr> */}
+                                {/* <td className='border p-5 text-center w-[130px]'>{v[i]}</td> */}
+                                <td className='border p-5 text-center w-[8.4em]'>{v[i]}</td>
                             </tr>
                         </table>
                     )
                 })}
             </div>
-            <div>
+            <div className='mt-8'>
                 {time.map((v, i) => {
                     return (
                         <table>
-                            <tr  className='overflow-y-scroll'>
-                                <td className='border-b-[1px] p-5 pt-11 text-center w-[167px]'>{v[i]}</td>
-                                <td className='border w-[170px]'></td>
-                                <td className='border w-[170px]'></td>
-                                <td className='border w-[170px]'></td>
-                                <td className='border w-[170px]'></td>
-                                <td className='border w-[170px]'></td>
-                                <td className='border w-[170px]'></td>
+                            <tr className='overflow-y-scroll'>
+                                {/* <td className='border-b-[1px] p-5 pt-11 text-center w-[135px]'>{v[i]}</td> */}
+                                <td className='border-b-[1px] p-4 text-center w-[135px]'>{v[i]}</td>
+                                <td className='border w-[8.8em]' onClick={() => clickPosition(i, "SUN")}></td>
+                                <td className='border w-[8.8em]' onClick={() => clickPosition(i, "MON")}></td>
+                                <td className='border w-[8.8em]' onClick={() => clickPosition(i, "TUE")}></td>
+                                <td className='border w-[8.8em]' onClick={() => clickPosition(i, "WED")}></td>
+                                <td className='border w-[8.8em]' onClick={() => clickPosition(i, "THU")}></td>
+                                <td className='border w-[8.8em]' onClick={() => clickPosition(i, "FRI")}></td>
+                                <td className='border w-[8.8em]' onClick={() => clickPosition(i, "SAT")}></td>
+                                {/* <td className='border w-[147px]'></td>
+                                <td className='border w-[147px]'></td>
+                                <td className='border w-[147px]'></td>
+                                <td className='border w-[147px]'></td>
+                                <td className='border w-[147px]'></td>
+                                <td className='border w-[147px]'></td>
+                                <td className='border w-[147px]'></td> */}
                             </tr>
                         </table>
                     )
