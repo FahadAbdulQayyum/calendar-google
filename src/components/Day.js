@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import React, { useContext, useState, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
 
-export default function Day({ day, rowIdx }) {
+const Day = ({ day, rowIdx }) => {
   const [dayEvents, setDayEvents] = useState([]);
   const {
     setDaySelected,
@@ -28,12 +28,12 @@ export default function Day({ day, rowIdx }) {
     <div className="border border-gray-200 flex flex-col">
       <header className="flex flex-col items-center">
         {rowIdx === 0 && (
-          <p className="text-sm mt-1">
-            {day.format("ddd").toUpperCase()}
-          </p>
+            <p className="text-sm mt-1">
+              {day.format("ddd").toUpperCase()}
+            </p>
         )}
         <p
-          className={`text-sm p-1 my-1 text-center  ${getCurrentDayClass()}`}
+          className={`text-sm p-1 my-1 text-center ${getCurrentDayClass()}`}
         >
           {day.format("DD")}
         </p>
@@ -58,3 +58,5 @@ export default function Day({ day, rowIdx }) {
     </div>
   );
 }
+
+export default Day;

@@ -18,6 +18,7 @@ const GlobalContext = React.createContext({
   updateLabel: () => {},
   filteredEvents: [],
   // nextMonth: () => {},
+  selectDay:() =>{}
 });
 
 export default GlobalContext;

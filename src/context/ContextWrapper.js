@@ -87,6 +87,11 @@ export default function ContextWrapper(props) {
     );
   }
 
+  const selectDay = (day) => {
+    console.log('day', day)
+    setDaySelected(day)
+  }
+
   // const [state, dispatch] = useReducer(initialState, reducer)
 
   return (
@@ -108,7 +113,8 @@ export default function ContextWrapper(props) {
         labels,
         updateLabel,
         filteredEvents,
-        // nextMonth
+        // nextMonth,
+        selectDay
       }}
     >
       {props.children}

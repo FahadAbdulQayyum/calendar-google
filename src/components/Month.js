@@ -1,6 +1,7 @@
 import React from "react";
 import Day from "./Day";
-export default function Month({ month }) {
+
+const Month = ({ month }) => {
   return (
     <div className="flex-1 grid grid-cols-7 grid-rows-5">
       {month.map((row, i) => (
@@ -13,3 +14,5 @@ export default function Month({ month }) {
     </div>
   );
 }
+
+export default Month;
