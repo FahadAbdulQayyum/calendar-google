@@ -3,8 +3,10 @@ import GlobalContext from '../context/GlobalContext'
 
 const DayGraph = () => {
 
-    const [day, setDay] = useState([]);
-    const [index, setIndex] = useState([]);
+    const [day, setDay] = useState();
+    const [index, setIndex] = useState();
+    // const [day, setDay] = useState([]);
+    // const [index, setIndex] = useState([]);
 
     const { daySelected } = useContext(GlobalContext)
     // const dummyArr = new Array(24).fill(<table></table>);
@@ -58,10 +60,10 @@ const DayGraph = () => {
 
     const clickPosition = (i, weekInd) => {
         console.log('pressed', i, weekInd)
-        // setDay(i);
-        // setIndex(weekInd);
-        setDay([...day, i])
-        setIndex([...index, weekInd])
+        setDay(i);
+        setIndex(weekInd);
+        // setDay([...day, i])
+        // setIndex([...index, weekInd])
     }
 
     const { posts, weeks: week, times: time } = Page
@@ -81,7 +83,8 @@ const DayGraph = () => {
                                     {time.map((v, ii) => 
                                         // <td className={(v[ii]==='10 AM' && i == 5) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' }>{v[ii]}</td>
                                         // <td key={ii} className={(v[ii]==='10 AM' && i == 5) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-                                        <td key={ii} className={(v[ii]===day[0] && i === index[0]) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
+                                        <td key={ii} className={(v[ii]===day && i === index) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
+                                        // <td key={ii} className={(v[ii]===day[0] && i === index[0]) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
                                     )}
                                 </tr>
                             </table>
