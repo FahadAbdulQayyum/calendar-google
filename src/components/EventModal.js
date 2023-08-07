@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
-
 const labelsClasses = [
   "indigo",
   "gray",
@@ -16,6 +15,8 @@ const EventModal = () => {
     daySelected,
     dispatchCalEvent,
     selectedEvent,
+    hour,
+    week
   } = useContext(GlobalContext);
 
   const [title, setTitle] = useState(
@@ -96,7 +97,10 @@ const EventModal = () => {
                 {/* schedule */}
                 ⏱
               </span>
-              <p>{daySelected.format("dddd, MMMM DD")}</p>
+              <div className="flex flex-col" draggable>
+                <p>{daySelected.format("dddd, D MMMM")}</p>
+                <p>{week + ', ' + hour + ' - '+ (+hour.slice(0,1)+1)+hour.slice(1,)}</p>
+              </div>
             </div>
             <div className="flex">
               <span className="material-icons-outlined text-gray-400 mr-6 pt-3 ml-2">
@@ -114,27 +118,27 @@ const EventModal = () => {
               />
             </div>
             <div className="flex">
-            <span className="material-icons-outlined text-gray-400 mr-4">
-              {/* bookmark_border */}
-              🔖
-            </span>
-            <div className="flex gap-x-2">
-              {labelsClasses.map((lblClass, i) => (
-                <span
-                  key={i}
-                  onClick={() => setSelectedLabel(lblClass)}
-                  // className={`bg-${lblClass}-500 w-6 h-6 rounded-full flex items-center justify-center cursor-pointer`}
-                  style={{ backgroundColor: lblClass, width: '25px', height: '25px', justifyContent: 'center', cursor: "pointer", borderRadius: 50, textAlign: 'center' }}
-                >
-                  {selectedLabel === lblClass && (
-                    <span className="material-icons-outlined text-white text-sm">
-                      {/* check */}
-                      ✓
-                    </span>
-                  )}
-                </span>
-              ))}
-            </div>
+              <span className="material-icons-outlined text-gray-400 mr-4">
+                {/* bookmark_border */}
+                🔖
+              </span>
+              <div className="flex gap-x-2">
+                {labelsClasses.map((lblClass, i) => (
+                  <span
+                    key={i}
+                    onClick={() => setSelectedLabel(lblClass)}
+                    // className={`bg-${lblClass}-500 w-6 h-6 rounded-full flex items-center justify-center cursor-pointer`}
+                    style={{ backgroundColor: lblClass, width: '25px', height: '25px', justifyContent: 'center', cursor: "pointer", borderRadius: 50, textAlign: 'center' }}
+                  >
+                    {selectedLabel === lblClass && (
+                      <span className="material-icons-outlined text-white text-sm">
+                        {/* check */}
+                        ✓
+                      </span>
+                    )}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
