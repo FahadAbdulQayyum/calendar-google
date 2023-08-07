@@ -1,11 +1,7 @@
-import React, { useState, useContext } from 'react'
+import React, { createElement, useContext } from 'react'
 import GlobalContext from '../context/GlobalContext'
 
 const DayGraph = () => {
-
-    const [day, setDay] = useState([]);
-    const [index, setIndex] = useState([]);
-
     const { daySelected } = useContext(GlobalContext)
     // const dummyArr = new Array(24).fill(<table></table>);
     const post = "fhad"
@@ -58,10 +54,6 @@ const DayGraph = () => {
 
     const clickPosition = (i, weekInd) => {
         console.log('pressed', i, weekInd)
-        // setDay(i);
-        // setIndex(weekInd);
-        setDay([...day, i])
-        setIndex([...index, weekInd])
     }
 
     const { posts, weeks: week, times: time } = Page
@@ -70,32 +62,22 @@ const DayGraph = () => {
             <div className='flex flex-row fixed bg-white'>
                 {week.map((v, i) => {
                     return (
-                        <>
-                            <table key={i}>
-                                <tr>
-                                    {/* <tr> */}
-                                    {/* <td className='border p-5 text-center w-[130px]'>{v[i]}</td> */}
-                                    <td className='border p-5 text-center w-[8.4em]'>{v[i]}</td>
-                                </tr>
-                                <tr className='flex flex-col text-center'>
-                                    {time.map((v, ii) => 
-                                        // <td className={(v[ii]==='10 AM' && i == 5) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' }>{v[ii]}</td>
-                                        // <td key={ii} className={(v[ii]==='10 AM' && i == 5) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-                                        <td key={ii} className={(v[ii]===day[0] && i === index[0]) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-                                    )}
-                                </tr>
-                            </table>
-                            <table>
-                            </table>
-                        </>
+                        <table>
+                            <tr>
+                                {/* <tr> */}
+                                {/* <td className='border p-5 text-center w-[130px]'>{v[i]}</td> */}
+                                <td className='border p-5 text-center w-[8.4em]'>{v[i]}</td>
+                            </tr>
+                        </table>
                     )
                 })}
             </div>
-            {/* <div className='mt-8'>
+            <div className='mt-8'>
                 {time.map((v, i) => {
                     return (
                         <table>
                             <tr className='overflow-y-scroll'>
+                                {/* <td className='border-b-[1px] p-5 pt-11 text-center w-[135px]'>{v[i]}</td> */}
                                 <td className='border-b-[1px] p-4 text-center w-[135px]'>{v[i]}</td>
                                 <td className='border w-[8.8em] cursor-pointer hover:bg-red-100' onClick={() => clickPosition(i, "SUN")}></td>
                                 <td className='border w-[8.8em] cursor-pointer hover:bg-gray-100' onClick={() => clickPosition(i, "MON")}></td>
@@ -104,11 +86,18 @@ const DayGraph = () => {
                                 <td className='border w-[8.8em] cursor-pointer hover:bg-gray-100' onClick={() => clickPosition(i, "THU")}></td>
                                 <td className='border w-[8.8em] cursor-pointer hover:bg-gray-100' onClick={() => clickPosition(i, "FRI")}></td>
                                 <td className='border w-[8.8em] cursor-pointer hover:bg-gray-100' onClick={() => clickPosition(i, "SAT")}></td>
+                                {/* <td className='border w-[147px]'></td>
+                                <td className='border w-[147px]'></td>
+                                <td className='border w-[147px]'></td>
+                                <td className='border w-[147px]'></td>
+                                <td className='border w-[147px]'></td>
+                                <td className='border w-[147px]'></td>
+                                <td className='border w-[147px]'></td> */}
                             </tr>
                         </table>
                     )
                 })}
-            </div> */}
+            </div>
         </div>
     )
 }
