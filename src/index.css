@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 
+.selectElement {
+  background-color: orange;
+}
+
 /* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

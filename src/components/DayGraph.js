@@ -3,10 +3,12 @@ import GlobalContext from '../context/GlobalContext'
 
 const DayGraph = () => {
 
-    const [day, setDay] = useState();
-    const [index, setIndex] = useState();
-    // const [day, setDay] = useState([]);
-    // const [index, setIndex] = useState([]);
+    // const [day, setDay] = useState();
+    // const [index, setIndex] = useState();
+    const [day, setDay] = useState([]);
+    const [index, setIndex] = useState([]);
+
+    const [changeBG, setChangeBG] = useState(false);
 
     const { daySelected } = useContext(GlobalContext)
     // const dummyArr = new Array(24).fill(<table></table>);
@@ -64,6 +66,7 @@ const DayGraph = () => {
         setIndex(weekInd);
         // setDay([...day, i])
         // setIndex([...index, weekInd])
+        setChangeBG(true);
     }
 
     const { posts, weeks: week, times: time } = Page
@@ -83,7 +86,16 @@ const DayGraph = () => {
                                     {time.map((v, ii) => 
                                         // <td className={(v[ii]==='10 AM' && i == 5) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' }>{v[ii]}</td>
                                         // <td key={ii} className={(v[ii]==='10 AM' && i == 5) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-                                        <td key={ii} className={(v[ii]===day && i === index) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
+                                        // <td key={ii} className={(v[ii]===day && i === index) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
+                                        
+                                        // <td key={ii} className={(v[ii]===day && i === index) && 'selectElement hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
+
+                                        <td key={ii} className={((v[ii]===day && i === index) && changeBG) && 'selectElement hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
+
+                                        // <td key={ii} className={(v[ii]===day[3] && i === index[0]) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
+                                        // <td key={ii} className={(v[ii]===day[ii] && i === index[ii]) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
+                                        // <td key={ii} className={(day.forEach(df=>v[ii]===df) && index.forEach(ind=>i===ind)) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
+                                        // <td key={ii} className={(day.map(d=>d===v[ii]) && index.map(ind=>ind===i)) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
                                         // <td key={ii} className={(v[ii]===day[0] && i === index[0]) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
                                     )}
                                 </tr>
