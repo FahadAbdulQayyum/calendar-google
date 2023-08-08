@@ -60,13 +60,15 @@ const DayGraph = () => {
         totalPosts: 50
     }
 
-    const clickPosition = (i, weekInd) => {
+    const clickPosition = (e, i, weekInd) => {
         console.log('pressed', i, weekInd)
         setDay(i);
         setIndex(weekInd);
         // setDay([...day, i])
         // setIndex([...index, weekInd])
         setChangeBG(true);
+
+        console.log('eee',e)
     }
 
     const { posts, weeks: week, times: time } = Page
@@ -90,7 +92,9 @@ const DayGraph = () => {
                                         
                                         // <td key={ii} className={(v[ii]===day && i === index) && 'selectElement hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
 
-                                        <td key={ii} className={((v[ii]===day && i === index) && changeBG) && 'selectElement hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
+                                        // <td key={ii} className={((v[ii]===day && i === index) && changeBG) && 'selectElement hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
+                                        
+                                        <td key={ii} className={((v[ii]===day && i === index) && changeBG) && 'selectElement hover:text-gray-100 cursor-pointer' } onClick={(e) => clickPosition(e, v[ii],i)}>{v[ii]}</td>
 
                                         // <td key={ii} className={(v[ii]===day[3] && i === index[0]) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
                                         // <td key={ii} className={(v[ii]===day[ii] && i === index[ii]) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
