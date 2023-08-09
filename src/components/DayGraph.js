@@ -1,61 +1,35 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, Fragment } from 'react'
 import GlobalContext from '../context/GlobalContext'
 
-  // useEffect(() => {
-  //   window.addEventListener("click", (e) => {
-  //     // console.log("eee", e.target.className);
-  //     console.log('e|', e.target.className.slice(4,9))
-  //     let boxSeleted = e.target.className.slice(4,9);
-  //     if (e.target.className.includes("box")) {
-       
-
-  //       if (!e.target.className.includes("bg-gray-300")) {
-  //         console.log("trueeee", e.target.className);
-  //         return e.target.className = boxSeleted+" box bg-gray-300 h-5 w-5 m-2"
-  //       } 
-  //         console.log("falseee", e.target.className);
-  //         return e.target.className = boxSeleted+" box bg-sky-500 h-5 w-5 m-2";     
-  //     }
-  //     console.log('final log', e.target.className)
-  //   });
-  // }, []);
-
-//   return (
-//     <div>
-//       <div className="box box0 bg-sky-500 h-5 w-5 m-2"></div>
-//       <div className="box box1 bg-sky-500 h-5 w-5 m-2"></div>
-//       <div className="box box2 bg-sky-500 h-5 w-5 m-2"></div>
-//       <div className="box box3 bg-sky-500 h-5 w-5 m-2"></div>
-//       <div className="box box4 bg-sky-500 h-5 w-5 m-2"></div>
-//       <div className="box box5 bg-sky-500 h-5 w-5 m-2"></div>
-//     </div>
-//   );
-// };
-
 const DayGraph = () => {
-  
+
+  const {setShowEventModal, showEventModal, daySelected} = useContext(GlobalContext)
+
   useEffect(() => {
     window.addEventListener("click", (e) => {
-      // console.log("eee", e.target.className);
-      console.log('e|', e.target.className.slice(4,9))
-      let boxSeleted = e.target.className.slice(4,9);
+      // console.log('e|||', e?.target?.classList[0])
+      // console.log('e|||', e?.target?.classList[0].toString().match('/\d+/'))
+      console.log('e|||', e?.target?.classList[0].toString().replace(/^\D+/g, ''))
+      // e?.target?.classList[0]
+      // console.log('e|', e?.target?.className?.slice !== undefined && e?.target?.className?.slice(0,5))
+      // let boxSeleted = e?.target?.className?.slice !== undefined && e?.target?.className?.slice(0,5);
+      let boxSelected = +e?.target?.classList[0].toString().replace(/^\D+/g, '');
+      
       if (e.target.className.includes("box")) {
        
 
         if (!e.target.className.includes("bg-cyan-300")) {
           console.log("trueeee", e.target.className);
-          // return e.target.className = boxSeleted+" box border p-5 text-center w-[8.4em] bg-cyan-300 h-5 w-5 m-2"
-          return e.target.className = boxSeleted+" box border p-5 text-center w-[8.4em] bg-cyan-300 m-0"
+          // setShowEventModal(true)
+          return e.target.className = boxSelected+" box border p-5 text-center w-[8.4em] bg-cyan-300 m-0"
         } 
           console.log("falseee", e.target.className);
-          // return e.target.className = boxSeleted+" box bg-sky-500 h-5 w-5 m-2";     
-          // return e.target.className = boxSeleted+" box hover:text-cyan-100 cursor-pointer";     
-          // return e.target.className = boxSeleted+" box border p-5 text-center w-[8.4em] hover:text-cyan-100 cursor-pointer";     
-          return e.target.className = boxSeleted+" box border p-5 text-center w-[8.4em] hover:text-cyan-100 cursor-pointer";     
+          // setShowEventModal(false)
+         return e.target.className = boxSelected+" box border p-5 text-center w-[8.4em] cursor-pointer text-transparent";     
       }
       console.log('final log', e.target.className)
     });
-  }, []);
+  });
 
     // const [day, setDay] = useState();
     // const [index, setIndex] = useState();
@@ -64,11 +38,10 @@ const DayGraph = () => {
 
     const [changeBG, setChangeBG] = useState(false);
 
-    const { daySelected } = useContext(GlobalContext)
     // const dummyArr = new Array(24).fill(<table></table>);
     const post = "fhad"
     const weeks = {
-        0: '',
+        0: '^',
         1: 'SUN',
         2: 'MON',
         3: 'TUE',
@@ -116,28 +89,28 @@ const DayGraph = () => {
 
     const { posts, weeks: week, times: time } = Page
     return (
-        <div className='overflow-auto'>
-            <div className='flex flex-row fixed bg-white'>
+        <div className='overflow-auto relative'>
+            <div className='flex flex-row static'>
                 {week.map((v, i) => {
                     return (
-                        <>
-                            <table key={i}>
+                        <Fragment key={i} >
+                            <table>
                                 <tr>
-                                    {/* <tr> */}
-                                    {/* <td className='border p-5 text-center w-[130px]'>{v[i]}</td> */}
-                                    <td className='border p-5 text-center w-[8.4em]'>{v[i]}</td>
+                                   <td className='border p-5 text-center w-[8.4em] fixed bg-white'>{v[i]}</td>
                                 </tr>
-                                <tr className='flex flex-col text-center'>
+                                <tr className='flex flex-col text-center mt-5'>
                                     {time.map((v, ii) => 
-                                        // <td key={ii} className={((v[ii]===day && i === index) && changeBG) && 'selectElement hover:text-gray-100 cursor-pointer' } onClick={(e) => clickPosition(e, v[ii],i)}>{v[ii]}</td>
-                                        // <td key={ii} className={'box box0 bg-sky-500 h-5 w-5 m-2'}></td>
-                                        <td key={ii} className={`box box${v[ii]} border p-5 text-center w-[8.4em] hover:text-gray-100 cursor-pointer`}></td>
+                                      i==0 
+                                        ?
+                                       <td key={ii} className={`box${v[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer`}>{v[ii]}</td>
+                                        :
+                                        <td key={ii} className={`box${v[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{v[ii]}</td>
                                  )}
                                 </tr>
                             </table>
                             <table>
                             </table>
-                        </>
+                        </Fragment>
                     )
                 })}
             </div>
