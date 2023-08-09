@@ -118,7 +118,7 @@ const DayGraph = () => {
                                        <td key={ii} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer`}>{t[ii]}</td>
                                         :
                                         // <td key={ii} onClick={()=>setHourG(hr=> t[ii])} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}</td>
-                                        <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i])} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}</td>
+                                        <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i])} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>
                                         // <td key={ii} onClick={()=>console.log('ttt',t[ii])} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}</td>
                                  )}
                                 </tr>
