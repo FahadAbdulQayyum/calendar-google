@@ -23,8 +23,12 @@ function savedEventsReducer(state, { type, payload }) {
 }
 function initEvents() {
   const storageEvents = localStorage.getItem("savedEvents");
+  const storageEventsClr = localStorage.getItem("coloredBox");
   const parsedEvents = storageEvents ? JSON.parse(storageEvents) : [];
+  const parsedEventsClr = storageEventsClr ? JSON.parse(storageEventsClr) : [];
+  // return parsedEvents, parsedEventsClr;
   return parsedEvents;
+  // return parsedEventsClr;
 }
 
 export default function ContextWrapper(props) {
@@ -58,7 +62,7 @@ export default function ContextWrapper(props) {
   useEffect(() => {
     localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
     localStorage.setItem("coloredBox", JSON.stringify(coloredBox));
-  }, [savedEvents]);
+  }, [savedEvents, coloredBox]);
 
   useEffect(() => {
     setLabels((prevLabels) => {
