@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 
 const DayGraph = () => {
 
-  const {setShowEventModal, setDaySelected, setHour, setWeek, setColoredBox, coloredBox} = useContext(GlobalContext)
+  const {setShowEventModal, setDaySelected, setHour, setWeek, setColoredBox, coloredBox, savedEvents} = useContext(GlobalContext)
 
     const [hourG, setHourG] = useState();
     const [dayG, setDayG] = useState();
@@ -109,14 +109,27 @@ const DayGraph = () => {
                                    <td className='border p-5 text-center w-[8.4em] fixed bg-white'>{w[i]}</td>
                                 </tr>
                                 <tr className='flex flex-col text-center mt-5'>
-                                    {time.map((t, ii) => 
-                                      i==0 
-                                        ?
-                                       <td key={ii} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer`}>{t[ii]}</td>
-                                        :
-                                        // <td key={ii} onClick={()=>setHourG(hr=> t[ii])} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}</td>
-                                        <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i],ii)} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>
-                                        // <td key={ii} onClick={()=>console.log('ttt',t[ii])} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}</td>
+                                    {time.map((t, ii) =>
+
+                                      // i==0 
+                                      //   ?
+                                      //  <td key={ii} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer`}>{t[ii]}</td>
+                                      //   :
+                                      //   <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i],ii)} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>
+
+{console.log('savedEvents',savedEvents[ii%3]?.d===ii,savedEvents[ii%3]?.ii===ii)}
+
+                                      // i==0 
+                                      //   ?
+                                      //  <td key={ii} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer`}>{t[ii]}</td>
+                                      //   ?
+                                      //   (savedEvents[i%2]?.d === i && savedEvents[i%2].ii === ii ) 
+                                      //   :
+                                      //   <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i],ii)} className={`box${t[ii]} box border p-5 text-center w-[8.4em] bg-sky-500 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>
+                                      //   :
+                                      //   <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i],ii)} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>
+                                        
+                                        
                                  )}
                                 </tr>
                             </table>
