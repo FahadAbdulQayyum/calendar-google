@@ -1,7 +1,61 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import GlobalContext from '../context/GlobalContext'
 
+  // useEffect(() => {
+  //   window.addEventListener("click", (e) => {
+  //     // console.log("eee", e.target.className);
+  //     console.log('e|', e.target.className.slice(4,9))
+  //     let boxSeleted = e.target.className.slice(4,9);
+  //     if (e.target.className.includes("box")) {
+       
+
+  //       if (!e.target.className.includes("bg-gray-300")) {
+  //         console.log("trueeee", e.target.className);
+  //         return e.target.className = boxSeleted+" box bg-gray-300 h-5 w-5 m-2"
+  //       } 
+  //         console.log("falseee", e.target.className);
+  //         return e.target.className = boxSeleted+" box bg-sky-500 h-5 w-5 m-2";     
+  //     }
+  //     console.log('final log', e.target.className)
+  //   });
+  // }, []);
+
+//   return (
+//     <div>
+//       <div className="box box0 bg-sky-500 h-5 w-5 m-2"></div>
+//       <div className="box box1 bg-sky-500 h-5 w-5 m-2"></div>
+//       <div className="box box2 bg-sky-500 h-5 w-5 m-2"></div>
+//       <div className="box box3 bg-sky-500 h-5 w-5 m-2"></div>
+//       <div className="box box4 bg-sky-500 h-5 w-5 m-2"></div>
+//       <div className="box box5 bg-sky-500 h-5 w-5 m-2"></div>
+//     </div>
+//   );
+// };
+
 const DayGraph = () => {
+  
+  useEffect(() => {
+    window.addEventListener("click", (e) => {
+      // console.log("eee", e.target.className);
+      console.log('e|', e.target.className.slice(4,9))
+      let boxSeleted = e.target.className.slice(4,9);
+      if (e.target.className.includes("box")) {
+       
+
+        if (!e.target.className.includes("bg-cyan-300")) {
+          console.log("trueeee", e.target.className);
+          // return e.target.className = boxSeleted+" box border p-5 text-center w-[8.4em] bg-cyan-300 h-5 w-5 m-2"
+          return e.target.className = boxSeleted+" box border p-5 text-center w-[8.4em] bg-cyan-300 m-0"
+        } 
+          console.log("falseee", e.target.className);
+          // return e.target.className = boxSeleted+" box bg-sky-500 h-5 w-5 m-2";     
+          // return e.target.className = boxSeleted+" box hover:text-cyan-100 cursor-pointer";     
+          // return e.target.className = boxSeleted+" box border p-5 text-center w-[8.4em] hover:text-cyan-100 cursor-pointer";     
+          return e.target.className = boxSeleted+" box border p-5 text-center w-[8.4em] hover:text-cyan-100 cursor-pointer";     
+      }
+      console.log('final log', e.target.className)
+    });
+  }, []);
 
     // const [day, setDay] = useState();
     // const [index, setIndex] = useState();
@@ -60,17 +114,6 @@ const DayGraph = () => {
         totalPosts: 50
     }
 
-    const clickPosition = (e, i, weekInd) => {
-        console.log('pressed', i, weekInd)
-        setDay(i);
-        setIndex(weekInd);
-        // setDay([...day, i])
-        // setIndex([...index, weekInd])
-        setChangeBG(true);
-
-        console.log('eee',e)
-    }
-
     const { posts, weeks: week, times: time } = Page
     return (
         <div className='overflow-auto'>
@@ -86,22 +129,10 @@ const DayGraph = () => {
                                 </tr>
                                 <tr className='flex flex-col text-center'>
                                     {time.map((v, ii) => 
-                                        // <td className={(v[ii]==='10 AM' && i == 5) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' }>{v[ii]}</td>
-                                        // <td key={ii} className={(v[ii]==='10 AM' && i == 5) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-                                        // <td key={ii} className={(v[ii]===day && i === index) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-                                        
-                                        // <td key={ii} className={(v[ii]===day && i === index) && 'selectElement hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-
-                                        // <td key={ii} className={((v[ii]===day && i === index) && changeBG) && 'selectElement hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-                                        
-                                        <td key={ii} className={((v[ii]===day && i === index) && changeBG) && 'selectElement hover:text-gray-100 cursor-pointer' } onClick={(e) => clickPosition(e, v[ii],i)}>{v[ii]}</td>
-
-                                        // <td key={ii} className={(v[ii]===day[3] && i === index[0]) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-                                        // <td key={ii} className={(v[ii]===day[ii] && i === index[ii]) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-                                        // <td key={ii} className={(day.forEach(df=>v[ii]===df) && index.forEach(ind=>i===ind)) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-                                        // <td key={ii} className={(day.map(d=>d===v[ii]) && index.map(ind=>ind===i)) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-                                        // <td key={ii} className={(v[ii]===day[0] && i === index[0]) && 'bg-sky-500 hover:text-gray-100 cursor-pointer' } onClick={() => clickPosition(v[ii],i)}>{v[ii]}</td>
-                                    )}
+                                        // <td key={ii} className={((v[ii]===day && i === index) && changeBG) && 'selectElement hover:text-gray-100 cursor-pointer' } onClick={(e) => clickPosition(e, v[ii],i)}>{v[ii]}</td>
+                                        // <td key={ii} className={'box box0 bg-sky-500 h-5 w-5 m-2'}></td>
+                                        <td key={ii} className={`box box${v[ii]} border p-5 text-center w-[8.4em] hover:text-gray-100 cursor-pointer`}></td>
+                                 )}
                                 </tr>
                             </table>
                             <table>
@@ -110,24 +141,6 @@ const DayGraph = () => {
                     )
                 })}
             </div>
-            {/* <div className='mt-8'>
-                {time.map((v, i) => {
-                    return (
-                        <table>
-                            <tr className='overflow-y-scroll'>
-                                <td className='border-b-[1px] p-4 text-center w-[135px]'>{v[i]}</td>
-                                <td className='border w-[8.8em] cursor-pointer hover:bg-red-100' onClick={() => clickPosition(i, "SUN")}></td>
-                                <td className='border w-[8.8em] cursor-pointer hover:bg-gray-100' onClick={() => clickPosition(i, "MON")}></td>
-                                <td className='border w-[8.8em] cursor-pointer hover:bg-gray-100' onClick={() => clickPosition(i, "TUE")}></td>
-                                <td className='border w-[8.8em] cursor-pointer hover:bg-gray-100' onClick={() => clickPosition(i, "WED")}></td>
-                                <td className='border w-[8.8em] cursor-pointer hover:bg-gray-100' onClick={() => clickPosition(i, "THU")}></td>
-                                <td className='border w-[8.8em] cursor-pointer hover:bg-gray-100' onClick={() => clickPosition(i, "FRI")}></td>
-                                <td className='border w-[8.8em] cursor-pointer hover:bg-gray-100' onClick={() => clickPosition(i, "SAT")}></td>
-                            </tr>
-                        </table>
-                    )
-                })}
-            </div> */}
         </div>
     )
 }
