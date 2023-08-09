@@ -16,7 +16,8 @@ const EventModal = () => {
     dispatchCalEvent,
     selectedEvent,
     hour,
-    week
+    week,
+    // title, setTitle
   } = useContext(GlobalContext);
 
   const [title, setTitle] = useState(
@@ -99,11 +100,7 @@ const EventModal = () => {
               </span>
               <div className="flex flex-col" draggable>
                 <p>{daySelected.format("dddd, D MMMM")}</p>
-                {/* <p>{week + ', ' + hour + ' - '+ (+hour.slice(0,1)+1)+hour.slice(1,)}</p> */}
                 <p>{hour + ' - '+ ((+hour.slice(0,2)+1) > 12 ? '01' : (+hour.slice(0,2)+1)) + ((+hour.slice(0,2)+1) > 11 ? ' PM' : ' AM')}</p>
-                {/* <p>{hour + ' - '+ (+hour.slice(0,2)+1)>11 ? '1' : (+hour.slice(0,2)+1) + hour.slice(2,)}</p> */}
-                {/* {console.log('hrrr',+hour.slice(0,2)+1) > 12} */}
-                {/* {console.log('hrrr',typeof (+hour.slice(0,2)+1))} */}
                 {console.log('hrrr', (+hour.slice(0,2)+1) > 12)}
               </div>
             </div>

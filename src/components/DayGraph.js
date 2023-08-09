@@ -1,33 +1,24 @@
 import React, { useState, useContext, useEffect, Fragment } from 'react'
 import GlobalContext from '../context/GlobalContext'
-import dayjs,{weekday} from 'dayjs';
+import dayjs from 'dayjs';
 
 const DayGraph = () => {
 
-  const {setShowEventModal, showEventModal, setDaySelected,daySelected, setHour, setWeek} = useContext(GlobalContext)
+  const {setShowEventModal, setDaySelected, setHour, setWeek, setColoredBox, coloredBox} = useContext(GlobalContext)
 
     const [hourG, setHourG] = useState();
     const [dayG, setDayG] = useState();
   
   useEffect(() => {
     window.addEventListener("click", (e) => {
-    console.log('setHourG, setDayG',hourG, dayG)
-
-      // console.log('e|||', e?.target?.classList[0])
-      // console.log('e|||', e?.target?.classList[0].toString().match('/\d+/'))
-      console.log('e||||', e?.target?.classList[0].toString().replace(/^\D+/g, ''))
-      // e?.target?.classList[0]
-      // console.log('e|', e?.target?.className?.slice !== undefined && e?.target?.className?.slice(0,5))
-      // let boxSeleted = e?.target?.className?.slice !== undefined && e?.target?.className?.slice(0,5);
-      let boxSelected = +e?.target?.classList[0].toString().replace(/^\D+/g, '');
+      let savedEvents = JSON.parse(localStorage.getItem("savedEvents")) 
+    console.log('ee|',savedEvents[0]?.title)
+    let boxSelected = +e?.target?.classList[0]?.toString()?.replace(/^\D+/g, '');
       
       if (e.target.className.includes("box")) {
 
         if (!e.target.className.includes("bg-cyan-300")) {
-          console.log("trueeee", e.target.className);
           setShowEventModal(true)
-          // setHour('10 PM')
-          // setWeek('Tue')
           return e.target.className = boxSelected+" box border p-5 text-center w-[8.4em] bg-cyan-300 m-0"
         } 
           console.log("falseee", e.target.className);
@@ -99,20 +90,14 @@ const DayGraph = () => {
     }
 
     const selectHrWk = (d, hr, wk) => {
-      // console.log('hr, wk', hr, wk);
+      // setColoredBox(bx => [...bx, d-1])
+      // setColoredBox(bx => [...bx, {hr, wk}])
+      let datee = dayjs().set('day', d-1)
+      setColoredBox(bx => [...bx, {hr, wk, datee}])
       setHour(hr)
       setWeek(wk)
-      // setDaySelected(dayjs())
-      console.log('d',d)
-      // console.log('dayjs',dayjs().set('date', d))
-      console.log('dayjsd',dayjs().set('day', d-1))
-      // dayjs.extend(weekday)
-      // console.log('dayjs',dayjs().weekday(1))
-      // console.log('dayjs',dayjs().day())
-      // setDaySelected('7')
-      // setDaySelected(dayjs().set('date', 1))
-      // setDaySelected(dayjs().weekday(d))
       setDaySelected(dayjs().set('day', d-1))
+      console.log('coloredBox|',coloredBox);
     }
 
     const { posts, weeks: week, times: time } = Page

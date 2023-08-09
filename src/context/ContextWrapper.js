@@ -36,6 +36,10 @@ export default function ContextWrapper(props) {
   const [showEventModal, setShowEventModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [labels, setLabels] = useState([]);
+  const [coloredBox, setColoredBox] = useState([])
+  // const [title, setTitle] = useState(
+  //   selectedEvent ? selectedEvent.title : ""
+  // );
   const [savedEvents, dispatchCalEvent] = useReducer(
     savedEventsReducer,
     [],
@@ -53,6 +57,7 @@ export default function ContextWrapper(props) {
 
   useEffect(() => {
     localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
+    localStorage.setItem("coloredBox", JSON.stringify(coloredBox));
   }, [savedEvents]);
 
   useEffect(() => {
@@ -120,7 +125,11 @@ export default function ContextWrapper(props) {
         updateLabel,
         filteredEvents,
         // nextMonth,
-        selectDay
+        selectDay,
+        // title,
+        // setTitle
+        coloredBox,
+        setColoredBox
       }}
     >
       {props.children}
