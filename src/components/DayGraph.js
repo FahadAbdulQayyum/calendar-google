@@ -29,10 +29,6 @@ const DayGraph = () => {
     });
   },[]);
 
-  useEffect(()=>{
-    console.log('setHourG, setDayG',hourG, dayG)
-  },[setDayG, setDayG])
-
     // const [day, setDay] = useState();
     // const [index, setIndex] = useState();
     // const [day, setDay] = useState([]);
@@ -89,11 +85,12 @@ const DayGraph = () => {
         totalPosts: 50
     }
 
-    const selectHrWk = (d, hr, wk) => {
+    const selectHrWk = (d, hr, wk, ii) => {
       // setColoredBox(bx => [...bx, d-1])
       // setColoredBox(bx => [...bx, {hr, wk}])
+      console.log('i, ii',d,ii);
       let datee = dayjs().set('day', d-1)
-      setColoredBox(bx => [...bx, {hr, wk, datee}])
+      setColoredBox(bx => [...bx, {hr, wk, datee,d,ii}])
       setHour(hr)
       setWeek(wk)
       setDaySelected(dayjs().set('day', d-1))
@@ -118,7 +115,7 @@ const DayGraph = () => {
                                        <td key={ii} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer`}>{t[ii]}</td>
                                         :
                                         // <td key={ii} onClick={()=>setHourG(hr=> t[ii])} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}</td>
-                                        <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i])} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>
+                                        <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i],ii)} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>
                                         // <td key={ii} onClick={()=>console.log('ttt',t[ii])} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}</td>
                                  )}
                                 </tr>
