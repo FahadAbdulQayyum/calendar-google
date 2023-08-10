@@ -9,25 +9,42 @@ const DayGraph = () => {
     const [hourG, setHourG] = useState();
     const [dayG, setDayG] = useState();
   
-  useEffect(() => {
-    window.addEventListener("click", (e) => {
-      let savedEvents = JSON.parse(localStorage.getItem("savedEvents")) 
-    console.log('ee|',savedEvents[0]?.title)
-    let boxSelected = +e?.target?.classList[0]?.toString()?.replace(/^\D+/g, '');
+  // useEffect(() => {
+  //   window.addEventListener("click", (e) => {
+  //     let savedEvents = JSON.parse(localStorage.getItem("savedEvents")) 
+  //   console.log('ee|',savedEvents[0]?.title)
+  //   let boxSelected = +e?.target?.classList[0]?.toString()?.replace(/^\D+/g, '');
       
-      if (e.target.className.includes("box")) {
+  //     if (e.target.className.includes("box")) {
 
-        if (!e.target.className.includes("bg-cyan-300")) {
-          setShowEventModal(true)
-          return e.target.className = boxSelected+" box border p-5 text-center w-[8.4em] bg-cyan-300 m-0"
-        } 
-          console.log("falseee", e.target.className);
-          setShowEventModal(false)
-         return e.target.className = boxSelected+" box border p-5 text-center w-[8.4em] cursor-pointer text-transparent";     
-      }
-      console.log('final log', e.target.className)
-    });
-  },[]);
+  //       if (!e.target.className.includes("bg-cyan-300")) {
+  //         setShowEventModal(true)
+  //         return e.target.className = boxSelected+" box border p-5 text-center w-[8.4em] bg-cyan-300 m-0"
+  //       } 
+  //         console.log("falseee", e.target.className);
+  //         setShowEventModal(false)
+  //        return e.target.className = boxSelected+" box border p-5 text-center w-[8.4em] cursor-pointer text-transparent";     
+  //     }
+  //     console.log('final log', e.target.className)
+  //   });
+  // },[]);
+
+const autoFunc = () => {
+  console.log('document', document.childNodes[1].childNodes[2].childNodes[3].childNodes[0].firstChild)
+  // console.log('document', document.childNodes[1].childNodes[2].childNodes[3].childNodes[0])
+}
+
+autoFunc();
+
+useEffect(() => {
+  // window.addEventListener('waiting', autoFunc)
+
+  
+  window.addEventListener("click", e=> {
+    console.log('eee',e.target.className)
+    // console.log('clientX',e.clientX,'clientY', e.clientY)
+  })
+},[])
 
     // const [day, setDay] = useState();
     // const [index, setIndex] = useState();
@@ -110,27 +127,23 @@ const DayGraph = () => {
                                 </tr>
                                 <tr className='flex flex-col text-center mt-5'>
                                     {time.map((t, ii) =>
-
-                                      // i==0 
-                                      //   ?
-                                      //  <td key={ii} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer`}>{t[ii]}</td>
-                                      //   :
-                                      //   <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i],ii)} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>
-
-{console.log('savedEvents',savedEvents[ii%3]?.d===ii,savedEvents[ii%3]?.ii===ii)}
-
-                                      // i==0 
-                                      //   ?
-                                      //  <td key={ii} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer`}>{t[ii]}</td>
-                                      //   ?
-                                      //   (savedEvents[i%2]?.d === i && savedEvents[i%2].ii === ii ) 
-                                      //   :
-                                      //   <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i],ii)} className={`box${t[ii]} box border p-5 text-center w-[8.4em] bg-sky-500 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>
-                                      //   :
-                                      //   <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i],ii)} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>
-                                        
-                                        
+                                      i===0 
+                                        ?
+                                       <td key={ii} className={`box${ii} box border p-5 text-center w-[8.4em] cursor-pointer`}>{t[ii]}</td>
+                                        :
+                                        // <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i],ii)} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>               
+                                        <td key={ii} className={`box${ii} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>               
                                  )}
+
+
+
+                                    {/* {time.map((t, ii) =>
+                                      i===0 
+                                        ?
+                                       <td key={ii} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer`}>{t[ii]}</td>
+                                        :
+                                        <td key={ii} onClick={()=>selectHrWk(i, t[ii],w[i],ii)} className={`box${t[ii]} box border p-5 text-center w-[8.4em] hover:bg-gray-100 hover:scale-110 transition-transform cursor-pointer text-transparent`}>{t[ii]}{' - '}{(+t[ii].slice(0,2)+1)}{' '+t[ii].slice(2,)}</td>               
+                                 )} */}
                                 </tr>
                             </table>
                             <table>

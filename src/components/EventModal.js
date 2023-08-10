@@ -100,8 +100,8 @@ const EventModal = () => {
               </span>
               <div className="flex flex-col" draggable>
                 <p>{daySelected.format("dddd, D MMMM")}</p>
-                <p>{hour + ' - '+ ((+hour.slice(0,2)+1) > 12 ? '01' : (+hour.slice(0,2)+1)) + ((+hour.slice(0,2)+1) > 11 ? ' PM' : ' AM')}</p>
-                {console.log('hrrr', (+hour.slice(0,2)+1) > 12)}
+                {/* <p>{hour + ' - '+ ((+hour.slice(0,2)+1) > 12 ? '01' : (+hour.slice(0,2)+1)) + ((+hour.slice(0,2)+1) > 11 ? ' PM' : ' AM')}</p> */}
+                {/* {console.log('hrrr', (+hour.slice(0,2)+1) > 12)} */}
               </div>
             </div>
             <div className="flex">
