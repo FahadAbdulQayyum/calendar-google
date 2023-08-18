@@ -23,7 +23,6 @@ function App() {
         <CalendarHeader />
         <div className="flex flex-1 overflow-hidden">
           <Sidebar />
-          {/* <Month month={currenMonth} /> */}
           <DayGraph day={daySelected}/>
         </div>
       </div>
