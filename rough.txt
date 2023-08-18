@@ -3,3 +3,7 @@ git commit -m "initial commit"
 git branch -M main
 git remote add origin https://github.com/FahadAbdulQayyum/routePractice.git
 git push -u origin main
+
+*******************************
+Something to remember always that keep going on in life, to keep building something that actually should matter as well!
+
